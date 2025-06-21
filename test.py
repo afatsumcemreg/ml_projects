@@ -343,3 +343,311 @@ new_dict = {col: agg_list for col in num_cols}
 print(new_dict)
 df[num_cols].head()
 df[num_cols].agg(new_dict)
+
+x = 8
+y = 3.2
+z = 8j + 18
+a = "Hello World"
+b = True
+c = 23 < 22
+l = [1, 2, 3, 4,"String",3.2, False]
+d = {"Name": "Jake", "Age": [27,56], "Adress": "Downtown"}
+t = ("Machine Learning", "Data Science")
+s = {"Python", "Machine Learning", "Data Science","Python"}
+
+type_list = [x, y, z, a, b, c, l, d, t, s]
+types = [print(f"{item}: {type(item)}") for item in type_list]
+
+lst = ["D","A","T","A","S","C","I","E","N","C","E"]
+len(lst)
+lst[0]
+lst[10]
+
+# Adım 3: Verilen liste üzerinden ["D","A","T","A"] listesi oluşturun.
+
+data_list = lst[0:4]
+data_list
+
+# Adım 4: Sekizinci index'teki elemanı silin.
+
+lst.pop(8)
+lst
+
+# Adım 5: Yeni bir eleman ekleyin.
+
+lst.append(99)
+lst
+
+
+# Adım 6: Sekizinci index'e  "N" elemanını tekrar ekleyin.
+
+lst.insert(8, "N")
+lst
+
+
+###############################################
+# GÖREV 4: Verilen sözlük yapısına aşağıdaki adımları uygulayınız.
+###############################################
+
+dict = {'Christian': ["America",18],
+        'Daisy':["England",12],
+        'Antonio':["Spain",22],
+        'Dante':["Italy",25]}
+
+
+# Adım 1: Key değerlerine erişiniz.
+
+dict.keys()
+
+# Adım 2: Value'lara erişiniz.
+
+dict.values()
+
+# Adım 3: Daisy key'ine ait 12 değerini 13 olarak güncelleyiniz.
+dict.update({"Daisy": ["England",13]})
+dict
+
+dict["Daisy"][1] = 14
+dict
+
+
+# Adım 4: Key değeri Ahmet value değeri [Turkey,24] olan yeni bir değer ekleyiniz.
+
+dict.update({"Ahmet": ["Turkey", 24]})
+dict
+
+# Adım 5: Antonio'yu dictionary'den siliniz.
+
+dict.pop("Antonio")
+dict
+
+
+
+###############################################
+# GÖREV 5: Arguman olarak bir liste alan, listenin içerisindeki tek ve çift sayıları ayrı listelere atıyan ve bu listeleri return eden fonskiyon yazınız.
+###############################################
+
+lst = [2,13,18,93,22]
+
+def func(list):
+
+    çift_list = []
+    tek_list = []
+
+    for i in list:
+        if i % 2 == 0:
+            çift_list.append(i)
+        else:
+            tek_list.append(i)
+
+    return çift_list, tek_list
+
+
+çift, tek = func(lst)
+print("Çift Sayılar:", çift)
+print("Tek Sayılar:", tek)
+
+#List comp. çözümü.
+çift_list = [i for i in lst if i % 2 == 0]
+tek_list = [i for i in lst if i % 2 != 0]
+
+def tek_cift_list(lst):
+    return [i for i in lst if i % 2 == 0], [i for i in lst if i % 2 != 0]
+
+çift_list, tek_list = tek_cift_list(lst)
+print("Çift Sayılar:", çift_list)
+print("Tek Sayılar:", tek_list)
+
+
+
+###############################################
+# GÖREV 6: Aşağıda verilen listede mühendislik ve tıp fakülterinde dereceye giren öğrencilerin isimleri bulunmaktadır.
+# Sırasıyla ilk üç öğrenci mühendislik fakültesinin başarı sırasını temsil ederken son üç öğrenci de tıp fakültesi öğrenci sırasına aittir.
+# Enumarate kullanarak öğrenci derecelerini fakülte özelinde yazdırınız.
+###############################################
+
+ogrenciler = ["Ali","Veli","Ayşe","Talat","Zeynep","Ece"]
+
+for i,x in enumerate(ogrenciler):
+    if i<3:
+        i += 1
+        print(f'Mühendislik Fakültesi {i}. öğrenci: {x}')
+    else:
+        i -= 2
+        print(f'Tıp Fakültesi {i}. öğrenci: {x}')
+
+# Alternatif çözüm
+for i, student in enumerate(ogrenciler):
+    if i < 3:
+        print(f"Mühendislik Fakültesi {i + 1}. öğrenci: {student}")
+    else:
+        print(f"Tıp Fakültesi {i - 2}. öğrenci: {student}")
+
+# Alternatif çözüm 2
+for i, student in enumerate(ogrenciler):
+    faculty = "Mühendislik Fakültesi" if i < 3 else "Tıp Fakültesi"
+    student_number = i + 1 if i < 3 else i - 2
+    print(f"{faculty} {student_number}. öğrenci: {student}")
+
+# List comprehension ile alternatif çözüm 3 
+ogrenci_listesi = [f"Mühendislik Fakültesi {i + 1}. öğrenci: {student}" if i < 3 else f"Tıp Fakültesi {i - 2}. öğrenci: {student}" for i, student in enumerate(ogrenciler)]
+for ogrenci in ogrenci_listesi:
+    print(ogrenci)
+
+###############################################
+# GÖREV 7: Aşağıda 3 adet liste verilmiştir. Listelerde sırası ile bir dersin kodu, kredisi ve kontenjan bilgileri yer almaktadır. Zip kullanarak ders bilgilerini bastırınız.
+###############################################
+
+ders_kodu = ["CMP1005","PSY1001","HUK1005","SEN2204"]
+kredi = [3,4,2,4]
+kontenjan = [30,75,150,25]
+
+
+for ders_kodu, kredi, kontenjan in zip(ders_kodu, kredi, kontenjan):
+  print(f"Kredisi {kredi} olan {ders_kodu} kodlu dersin kontenjanı {kontenjan} kişidir.")
+
+
+###############################################
+# GÖREV 8: Aşağıda 2 adet set verilmiştir.
+# Sizden istenilen eğer 1. küme 2. kümeyi kapsiyor ise ortak elemanlarını eğer kapsamıyor ise 2. kümenin 1. kümeden farkını yazdıracak fonksiyonu tanımlamanız beklenmektedir.
+###############################################
+
+kume1 = set(["data", "python"])
+kume2 = set(["data", "function", "qcut", "lambda", "python", "miuul"])
+kume1.intersection(kume2)
+
+def kume(set1,set2):
+    if set1.issuperset(set2):
+        print(f'Ortak Elemanlar: {set1.intersection(set2)}')
+    else:
+        print(f"")
+
+kume(kume1,kume2)
+
+def kume_kontrol(kume1, kume2):
+    if kume1.issuperset(kume2):  # kume1, kume2'yi kapsıyor mu?
+        ortak = kume1.intersection(kume2)
+        print("Ortak elemanlar:", ortak)
+    else:
+        fark = kume2.difference(kume1)
+        print("2. kümenin 1. kümeden farkı:", fark)
+
+# Test
+kume1 = set(["data", "python"])
+kume2 = set(["data", "function", "qcut", "lambda", "python", "miuul"])
+
+kume_kontrol(kume1, kume2)
+
+import numpy as np
+
+# [1, 2, 3, 4, 5] elemanlarından oluşan bir NumPy array oluşturma
+arr1 = np.array([1, 2, 3, 4, 5])
+
+# Oluşturulan array'in veri tipini kontrol etme
+type(np.array([1, 2, 3, 4, 5]))
+# Çıktı: <class 'numpy.ndarray'>
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+arr.argmax()
+arr.argmin()
+arr.any()
+arr.astype('int')
+arr.ndim
+arr.nbytes
+arr.shape
+arr.size
+arr.dtype
+arr.itemsize
+arr.data
+
+ar = np.random.randint(1, 10, size=9)
+ar
+
+ar.reshape(3, 3)
+
+import numpy as np
+
+a = np.random.randint(10, size=10)
+
+a[0]
+a[0:5]
+a[0] = 999
+
+import numpy as np
+
+# 3 satır ve 5 sütundan oluşan ve elemanları 0 ile 9 arasında rastgele sayılardan oluşan bir NumPy dizisi oluşturma
+m = np.random.randint(10, size=(3, 5))
+# Dizinin ilk satırı ve ilk sütununun elemanını seçme
+m[0, 0]
+
+# Dizinin ikinci satırın ve ikinci sütununun elemanını seçer.
+m[1, 1]
+
+# Dizinin üçüncü satırın ve dördüncü sütununun elemanını seçer.
+m[2, 3]
+
+# m dizisinin üçüncü satırın ve dördüncü sütununun elemanına 999 değerini atar.
+m[2, 3] = 999
+
+# m dizisinin üçüncü satırın ve dördüncü sütununun elemanına 2.9 değerini atar. Ancak, m bir tamsayı dizisi olduğu için bu atama işlemi sonucunda değer 2 olarak kaydedilir.
+m[2, 3] = 2.9
+
+# m dizisinin tüm satırlarını ve ilk sütununu seçer.
+m[:, 0]
+
+# m dizisinin ikinci satırını ve tüm sütunlarını seçer.
+m[1, :]
+
+# m dizisinin ilk iki satırını ve ilk üç sütununu seçer.
+m[0:2, 0:3]
+
+arr = np.array([10, 20, 30, 40, 50])
+
+indices = [1, 3]  # Fancy Index olarak kullanılacak liste
+
+selected_elements = arr[indices]  # Fancy Index ile elemanları seçme
+
+print(selected_elements)
+
+mat = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+mat
+
+indices = np.array([[0, 2], [1, 2]])  # Fancy Index olarak kullanılacak matris
+
+selected_elements = mat[indices]  # Fancy Index ile elemanları seçme
+
+selected_elements
+
+x = -2
+
+np.abs(x)
+
+x**2
+
+# Denklem sistemini tanımlama
+# 2x + y = 10
+# x + 3y = 15
+
+coefficients = np.array([[2, 1], [1, 3]])
+constants = np.array([10, 15])
+
+# Denklem sistemini çözme
+solution = np.linalg.solve(coefficients, constants)
+print("x =", solution[0])
+print("y =", solution[1])
+
+import pandas as pd
+
+s = pd.Series([10, 77, 12, 4, 5])
+type(s)
+s.index
+s.dtype
+s.size
+s.ndim
+s.values
+type(s.values)
+s.head(3)
+s.tail(3)
